@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patek P Archive</title>
+
+<style>
+img {
+    max-width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: auto;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+div {
+    display: block;
+}
+
+video, img{
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+}
+
+.tile{
+	display: inline-block;
+}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdn.shopify.com/s/files/1/0270/5531/t/14/assets/instafeed.min.js?13525727638000266282" type="text/javascript"></script>
+
+<script type="text/javascript">
+          
+        
+        $(document).ready(function() {
+
+					var userFeed = new Instafeed({
+
+		              get: 'user',
+		              accessToken: '1701205002.1677ed0.8fc61395d008467d9a2b6f3680f8a8d3',
+		              userId: 1701205002,
+		              clientId: 'c6d78ad853404db1b7e59e917a1316ff',
+		              limit: 60,
+		              sortBy: 'most-liked',
+		              resolution: 'standard_resolution',
+		              filter: function(image) {
+		                if (image.type == 'image') {
+		                  image.template = '<img src="' + image.images.standard_resolution.url + '" />';
+		                } else if (image.type == 'video') {
+		                  image.template = '<video width="640" height="640" controls loop><source src="' + image.videos.standard_resolution.url + '" type="video/mp4"/></video>';
+		                }
+		                return true;
+		              },
+		              template: '<div class="tile"><div id="header">{{model.template}}</div><div id="footer"><a href="http://instagram.com/{{model.user.username}}">@{{model.user.username}}</a> - <a href="{{link}}">&hearts; {{likes}}</a></div></div>',
+		            });
+		            userFeed.run();
+		          
+		            $(window).scroll(function () {
+		               if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+		                  userFeed.next();
+		               }
+		            });
+
+		    });
+
+
+
+
+        
+</script>	
+</head>
+<body>
+
+
+	<div id="instafeed"></div>
+</body>
+</html>
+
